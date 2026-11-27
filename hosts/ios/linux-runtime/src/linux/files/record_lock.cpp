@@ -553,7 +553,9 @@ int64_t record_lock(Memory &memory, Filesystem &filesystem, Scheduler &scheduler
                 argument,
                 task.tid,
                 query,
-                waiting});
+                waiting,
+                {},
+                {}});
     if (auto result = request->attempt())
         return *result;
     const auto waiter_key = std::make_pair(owner.process.scheduler, task.tid);
