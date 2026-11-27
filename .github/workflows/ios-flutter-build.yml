@@ -125,6 +125,9 @@ jobs:
           path: tools/release/work/ios-v8/*/aarch64-apple-ios
           key: ${{ runner.os }}-${{ runner.arch }}-ios-v8-${{ steps.ios-build-toolchain.outputs.hash }}-${{ hashFiles('tools/build_scripts/prepare_ios_v8.py', 'apps/flutter/native/operit-flutter-bridge/Cargo.lock') }}
 
+      - name: Bundle models.dev catalog
+        run: python3 tools/build_scripts/models_dev_bundle.py
+     
       - name: Build iOS ARM64 runtime
         run: bash tools/ios-runtime/arm64/build.sh ios
 
