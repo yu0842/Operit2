@@ -18,6 +18,10 @@ jobs:
 
       - name: Install ARM64 rootfs build tools
         run: |
+          while IFS= read -r file; do
+            sudo mv "$file" "$file.disabled"
+          done < <(grep -RIl "packages.microsoft.com/ubuntu/24.04/prod" /etc/apt/sources.list /etc/apt/sources.list.d 2>/dev/null || true)
+
           sudo apt-get update
           sudo apt-get install -y ca-certificates curl python3 qemu-user-static binfmt-support
 
